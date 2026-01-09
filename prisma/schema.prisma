@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      String   @default("LECTOR")
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model SystemConfig {
+  id        String   @id @default("main")
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model ProjectFile {
+  id              String   @id @default(cuid())
+  productName     String
+  deliverableName String
+  version         String
+  type            String
+  category        String   @default("DELIVERABLE")
+  uploaderRole    String   @default("CONTRATISTA") // NUEVO: CONTRATISTA | CONTRATANTE
+  date            DateTime
+  fileName        String
+  filePath        String
+  fileSize        Int
+  createdAt       DateTime @default(now())
+}
