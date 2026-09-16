@@ -1,0 +1,7 @@
+
+# --- Higiene basica: dependencias, artefactos de build y secretos ---
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
